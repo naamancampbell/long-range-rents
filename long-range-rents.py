@@ -51,12 +51,16 @@ for listing in results:
 
     price = 0
     if not full_listing['priceDetails'].get('price'):
+        valid_price = False
         if full_listing['priceDetails'].get('displayPrice'):
             price = full_listing['priceDetails']['displayPrice']
             match = re.search(r'\$(\d+)', price)
-            price = match.group(1)
-        else:
+            if match:
+                valid_price = True
+                price = match.group(1)
+        if not valid_price:
             print(f'Skipping ID#{listing_id} - no prices')
+            continue
     else:
         price = full_listing['priceDetails']['price']
 

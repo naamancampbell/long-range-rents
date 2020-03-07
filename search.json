@@ -1,22 +1,22 @@
 {
-    "listingType": "Rent",
-      "propertyFeatures": [
-      "AirConditioning",
-          "Dishwasher"
-    ],
-    "listingAttributes": [
-      "HasPhotos"
-    ],
-    "maxBedrooms": 2,
-      "minCarspaces": 1,
-    "minPrice": 100,
-    "maxPrice": 500,
-      "pageSize": 200,
-    "locations": [
-      {
-        "state": "QLD",
-        "postCode": "4000",
-        "includeSurroundingSuburbs": false
-      }
-    ]
-  }
+  "listingType": "Rent",
+  "propertyFeatures": [
+    "AirConditioning",
+    "Dishwasher"
+  ],
+  "listingAttributes": [
+    "HasPhotos"
+  ],
+  "maxBedrooms": 2,
+  "minCarspaces": 1,
+  "minPrice": 100,
+  "maxPrice": 500,
+  "pageSize": 200,
+  "locations": [
+    {
+      "state": "QLD",
+      "postcode": "4000",
+      "includeSurroundingSuburbs": false
+    }
+  ]
+}
