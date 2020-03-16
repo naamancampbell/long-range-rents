@@ -4,12 +4,13 @@ import os
 import re
 import requests
 import sys
+from datetime import date
 
 '''
     File name: long-range-rents.py
     Author: Naaman Campbell
     Date created: 2020-03-07
-    Date last modified: 2020-03-07
+    Date last modified: 2020-03-16
     Python Version: 3.8
 '''
 
@@ -27,7 +28,13 @@ request_headers = {
 search_json = json.dumps(search_json)
 results = requests.post(endpoint, data=search_json, headers=request_headers)
 headers = results.headers
+status_code = results.status_code
 results = results.json()
+
+if status_code >= 400:
+    message = results.get('message', '')
+    print(f'{status_code} - {message}')
+    sys.exit(1)
 
 # retrieve and print API rate limit and warning
 match = re.search(r'per (.*)$', headers['X-RateLimit-Limit'])
@@ -63,6 +70,11 @@ for listing in results:
             continue
     else:
         price = full_listing['priceDetails']['price']
+
+    if not full_listing.get('dateAvailable'):
+        # set today's date for missing available dates
+        today = date.today()
+        full_listing['dateAvailable'] = today.strftime("%Y-%m-%d")
 
     csv_data.append({
         'ID': listing_id, 
