@@ -7,16 +7,12 @@ import sys
 from datetime import date
 
 '''
-    File name: long-range-rents.py
+    File name: long-range-rents-rea.py
     Author: Naaman Campbell
-    Date created: 2020-03-07
-    Date last modified: 2020-03-16
-    Python Version: 3.8
+    Date created: 2022-10-30
+    Date last modified: 2022-10-30
+    Python Version: 3.10
 '''
-
-if not os.getenv('DOMAIN_API_KEY'):
-    print('DOMAIN_API_KEY environment variable not found. Exiting..')
-    sys.exit(1)
 
 with open('search.json', 'r') as f:
     search_json = json.load(f)
@@ -37,14 +33,15 @@ if status_code >= 400:
     sys.exit(1)
 
 # retrieve and print API rate limit and warning
-match = re.search(r'per (.*)$', headers['X-RateLimit-Limit'])
-rate_limit = match.group(1)
-rate_limit_remaining = headers['X-RateLimit-Remaining']
-total_count = headers['X-Total-Count']
-print(f'{rate_limit_remaining} remaining API calls in {rate_limit} period')
-if int(total_count) > int(rate_limit_remaining):
-    print(f'Total items ({total_count}) exceeds rate limit. Exiting..')
-    sys.exit(1)
+if headers.get('X-RateLimit-Limit'):
+    match = re.search(r'per (.*)$', headers['X-RateLimit-Limit'])
+    rate_limit = match.group(1)
+    rate_limit_remaining = headers['X-RateLimit-Remaining']
+    total_count = headers['X-Total-Count']
+    print(f'{rate_limit_remaining} remaining API calls in {rate_limit} period')
+    if int(total_count) > int(rate_limit_remaining):
+        print(f'Total items ({total_count}) exceeds rate limit. Exiting..')
+        sys.exit(1)
 
 # retrieve each detailed listing
 csv_data = []
