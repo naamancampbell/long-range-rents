@@ -1,0 +1,42 @@
+{
+  "listingType": "Rent",
+  "propertyFeatures": [
+    "AirConditioning",
+    "Dishwasher"
+  ],
+  "listingAttributes": [
+    "HasPhotos"
+  ],
+  "maxBedrooms": 3,
+  "minCarspaces": 1,
+  "minPrice": 375,
+  "maxPrice": 550,
+  "pageSize": 200,
+  "locations": [
+    {
+      "state": "QLD",
+      "suburb": "Nundah",
+      "includeSurroundingSuburbs": false
+    },
+    {
+      "state": "QLD",
+      "suburb": "Stafford",
+      "includeSurroundingSuburbs": false
+    },
+    {
+      "state": "QLD",
+      "suburb": "Alderley",
+      "includeSurroundingSuburbs": false
+    },
+    {
+      "state": "QLD",
+      "suburb": "Milton",
+      "includeSurroundingSuburbs": false
+    },        
+    {
+      "state": "QLD",
+      "suburb": "Auchenflower",
+      "includeSurroundingSuburbs": false
+    }
+  ]
+}

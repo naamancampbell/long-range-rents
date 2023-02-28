@@ -15,7 +15,7 @@ from datetime import date
 '''
 
 
-def domain_results(search_json):
+def domain_results(search_json, domain_endpoint, domain_headers):
     results = requests.post(domain_endpoint, data=search_json, headers=domain_headers)
     headers = results.headers
     status_code = results.status_code
@@ -85,8 +85,8 @@ def domain_detailed_results(results):
     return csv_data
 
 
-def main():
-    results, headers, status_code = domain_results(search_json)
+def main(search_json, domain_endpoint, domain_headers):
+    results, headers, status_code = domain_results(search_json, domain_endpoint, domain_headers)
 
     if status_code >= 400:
         message = results.get('message', '')
@@ -123,4 +123,4 @@ if __name__ == "__main__":
         'Content-Type': 'application/json'
     }   
         
-    main()
+    main(search_json, domain_endpoint, domain_headers)
